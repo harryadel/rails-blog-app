@@ -1,11 +1,10 @@
 class Article < ApplicationRecord
   has_many :comments
-  has_many :taggings, through: :taggings
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   def tag_list
-    tags.collect do |tag|
-      tag.name
-    end.join(', ')
+    tags.map(&:name).join(', ')
   end
 
   def tag_list=(tags_string)
