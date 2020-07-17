@@ -6,4 +6,11 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :tags
+
+  resources :authors
+
+  resources :author_sessions, only: %i[new create destroy]
+
+  get 'login' => 'author_session#new'
+  get 'logout' => 'author_session#destroy'
 end
